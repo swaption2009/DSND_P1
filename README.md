@@ -3,9 +3,6 @@
 Please find the blog post and analysis of this GitHub repo [here](https://medium.com/@JontanJon/udacity-data-scientist-project-seattle-airbnb-data-7f34d18598d4).
 
 #### Motivation for the project
-Please find the blog post and analysis of this GitHub repo [here](https://medium.com/@JontanJon/udacity-data-scientist-project-seattle-airbnb-data-7f34d18598d4).
-
-#### Motivation for the project
 Since 2008, guests and hosts have used Airbnb to travel in a more unique, personalized way. As part of the Airbnb Inside initiative, this dataset describes the listing activity of homestays in Seattle, WA.
 
 For this Udacity Data Scientist Nanodegree first project, we are using Seattle AirBNB data to analyze the following three business questions:
