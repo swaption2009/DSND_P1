@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>workbook</title>
+<title>Kaggle Seattle AirBNB</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13077,6 +13077,87 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="TOC">TOC<a class="anchor-link" href="#TOC">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="CRISP-DM-FRAMEWORK">CRISP-DM FRAMEWORK<a class="anchor-link" href="#CRISP-DM-FRAMEWORK">&#182;</a></h3><ol>
+<li><a href="#BUSINESS-UNDERSTANDING">Business Understanding</a></li>
+<li><a href="#DATA-UNDERSTANDING">Data Understanding</a></li>
+<li><a href="#DATA-PREPARATION">Data Prepararation</a></li>
+<li><a href="#MODELING">Modeling</a></li>
+<li><a href="#EVALUATION">Evaluation</a></li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="BUSINESS-UNDERSTANDING">BUSINESS UNDERSTANDING<a class="anchor-link" href="#BUSINESS-UNDERSTANDING">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since 2008, guests and hosts have used Airbnb to travel in a more unique, personalized way. As part of the Airbnb Inside initiative, this dataset describes the listing activity of homestays in Seattle, WA. For this Udacity Data Scientist Nanodegree first project, we are using Seattle AirBNB data to analyze the following three business questions. We also provide the theses why we want to ask these questions.</p>
+<ol>
+<li><p>Is there any relationship between number of reviews and monthly prices? <br />
+<strong>Thesis</strong>: the higher the price is the more number of reviews the listing will get. We assume people will expect since they pay so much money to rent a place. To analyze this question, we extract the monthly_price and reviews_per_month for each listing.<br>
+<br /></p>
+</li>
+<li><p>What is the impact of neighborhood on monthly prices?<br />
+<strong>Thesis</strong>: The monthly price will depend on the neighborhood. Since the housing prices in some neighborhood areas are more expensive, we can expect the AirBNB price will also tend to be higher in some areas.<br>
+<br /></p>
+</li>
+<li><p>Can We predict the monthly prices based on certain parameters?<br />
+<strong>Thesis</strong>. Other than the neighborhood, we believe there are certain characteristics in the listings that can help to predict the monthly price. Similar to the housing price, some characteristics (ie. independent variables), such as number of bedrooms, size, etc., have strong coefficient to the dependent variable (ie. monthly price).</p>
+</li>
+</ol>
+<p>For the first two questions above, we will use <strong>data visualization and descriptive analytics</strong> to answer the question. For the last question, we will use <strong>sklearn linear regression model</strong> to train and predict monthly prices based on <em><em>5 features selection</em></em> as described in details below.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="DATA-UNDERSTANDING">DATA UNDERSTANDING<a class="anchor-link" href="#DATA-UNDERSTANDING">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Methodology</strong></p>
+<ol>
+<li>Download csv files from Kaggle Seattle AirBNB competition.</li>
+<li>Upload the csv files into seattle folder.</li>
+<li>Use <code>pd.read_csv()</code> function to import each csv file into dataframes.</li>
+<li>To connect all the three dataframes, we set listing id as the primary key.</li>
+<li>Combine all three dataframes into one dataframe using <code>df.join()</code> function with outer join since we find the union of the three dataframes.
+Since we are comparing the monthly_price against number of reviews in the first question and against neighborhood in the second question, we used regex to convert the dtype from string to float.
+Also, we have plenty of records in our dataframes. Therefore, we remove NaN data using <code>pd.dropna()</code> function.</li>
+</ol>
+<p><strong>Data Exploration</strong>
+The three csv files that we downloaded from Kaggle are:</p>
+<ol>
+<li><code>calendar.csv</code>: For each listing_id (ie. primary key), it contains date (datetime), available (boolean), and price (string). There are 1,393,570 records in this file.</li>
+<li><code>listings.csv</code>: This is the main file that has all information about a specific listing. This file has 91 columns, such as listing_url, scrape_id, name, summary, space, etc. There are 3,818 total listings in Seattle.</li>
+<li><code>reviews.csv</code>: This file includes the comments on specific listing. It includes information, such as review_id, name, comments, and date. There are 84849 comments in this file.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Import-libraries">Import libraries<a class="anchor-link" href="#Import-libraries">&#182;</a></h3>
 </div>
 </div>
@@ -13772,6 +13853,13 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="DATA-PREPARATION">DATA PREPARATION<a class="anchor-link" href="#DATA-PREPARATION">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Concat-dataframe">Concat dataframe<a class="anchor-link" href="#Concat-dataframe">&#182;</a></h3>
 </div>
 </div>
@@ -14259,7 +14347,14 @@ Length: 99, dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Number-of-reviews-and-monthly-price">Number of reviews and monthly price<a class="anchor-link" href="#Number-of-reviews-and-monthly-price">&#182;</a></h3>
+<h1 id="MODELING">MODELING<a class="anchor-link" href="#MODELING">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Question-1:-Is-there-any-relationship-between-number-of-reviews-and-monthly-prices?">Question 1: Is there any relationship between number of reviews and monthly prices?<a class="anchor-link" href="#Question-1:-Is-there-any-relationship-between-number-of-reviews-and-monthly-prices?">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -14731,7 +14826,7 @@ Name: reviews_per_month, dtype: int64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Neighborhood-and-price">Neighborhood and price<a class="anchor-link" href="#Neighborhood-and-price">&#182;</a></h3>
+<h2 id="Question-2:-What-is-the-impact-of-neighborhood-on-monthly-prices?">Question 2: What is the impact of neighborhood on monthly prices?<a class="anchor-link" href="#Question-2:-What-is-the-impact-of-neighborhood-on-monthly-prices?">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -15224,7 +15319,7 @@ Name: monthly_price, dtype: float64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Predict-monthly-price">Predict monthly price<a class="anchor-link" href="#Predict-monthly-price">&#182;</a></h3>
+<h3 id="Question-3:-Can-we-rredict-the-monthly-prices?">Question 3: Can we rredict the monthly prices?<a class="anchor-link" href="#Question-3:-Can-we-rredict-the-monthly-prices?">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -15753,6 +15848,58 @@ Variance score: 0.34
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="EVALUATION">EVALUATION<a class="anchor-link" href="#EVALUATION">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Question-1:-Is-there-any-relationship-between-number-of-reviews-and-monthly-prices?">Question 1: Is there any relationship between number of reviews and monthly prices?<a class="anchor-link" href="#Question-1:-Is-there-any-relationship-between-number-of-reviews-and-monthly-prices?">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As shown in the correlation table and data visualization, we can conclude there is no relationship between monthly price and number of reviews per month. The correlation is close to 0 which means both variables don’t correlate with each other.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Question-2:-What-is-the-impact-of-neighborhood-on-monthly-prices?">Question 2: What is the impact of neighborhood on monthly prices?<a class="anchor-link" href="#Question-2:-What-is-the-impact-of-neighborhood-on-monthly-prices?">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since we are comparing the price (dtype: float) versus neighborhoods (dtype: categorical data), we can’t compute the correlation between the two variables. However, as we can see from the data visualization, we can infer the relationship between monthly price and neighborhood areas. We also omit three neighborhood areas that don't show monthly prices. We believe removing these neighborhood not only won't impact the conclusion for this question, but also help keep the data clean from any <code>NaN</code> values.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Question-3:-Can-we-predict-the-monthly-prices?">Question 3: Can we predict the monthly prices?<a class="anchor-link" href="#Question-3:-Can-we-predict-the-monthly-prices?">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The linear regression performs much better than the first analysis. With 5 features selection, the model can predict much better than the random variable that we selected to analyze the first question. When we have much bigger computing power, we can try to use more features and try to improve the prediction better.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
