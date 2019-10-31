@@ -17,8 +17,8 @@ For this Udacity Data Scientist Nanodegree first project, we are using Seattle A
 
 #### How to use the files in this repository 
 - `seattle` folder consists of Kaggle Seattle AirBNB data in csv format.
-- `workbook.ipynb` is the Jupyter Notebook to preprocess and analyze the data.
-- `workbook.html` is the HTML file for quick viewing on the browser.
+- `Kaggle Seattle AirBNBD.ipynb` is the Jupyter Notebook to preprocess and analyze the data.
+- `Kaggle Seattle AirBNBD` is the HTML file for quick viewing on the browser.
 - `README.md` provides the intro and summary of the analysis.
 
 #### Libraries
